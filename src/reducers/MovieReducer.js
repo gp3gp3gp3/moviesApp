@@ -14,7 +14,7 @@ export default (state = INITIAL_STATE, action) => {
     case MOVIES_FETCH_SUCCESS:
       return { ...state, ...INITIAL_STATE, moviesLoading: false, movies: action.payload }
     case MOVIES_FETCH_FAIL:
-      return { ...state, ...INITIAL_STATE, error: action.payload }
+      return { ...state, ...INITIAL_STATE, moviesLoading: false, error: action.payload }
     default:
       return state
   }
