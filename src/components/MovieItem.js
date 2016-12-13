@@ -2,22 +2,29 @@ import React from 'react'
 import { TouchableWithoutFeedback, View, Text, Image } from 'react-native'
 import { CardSection } from './common'
 
-const MovieItem = ({title, poster_120x171}) => {
+const MovieItem = ({title, poster_120x171, rating}) => {
+  const {
+    thumbnailContainerStyle,
+    thumbnailStyle,
+    headerContentStyle,
+    headerTextStyle
+  } = styles
+
   const thumbnail = poster_120x171.replace(/^http:/, 'https:')
   return (
     <TouchableWithoutFeedback>
       <View>
         <CardSection>
-          <View style={styles.thumbnailContainerStyle}>
+          <View style={thumbnailContainerStyle}>
             <Image
-              style={styles.thumbnailStyle}
+              style={thumbnailStyle}
               source={{ uri: thumbnail }}
             />
           </View>
-          <View style={styles.headerContentStyle}>
+          <View style={headerContentStyle}>
             <Text
-              style={styles.headerTextStyle}
-              numberOfLines={5}
+              style={headerTextStyle}
+              numberOfLines={3}
             >
               {title}
             </Text>
@@ -40,12 +47,15 @@ const styles = {
     width: 120
   },
   headerContentStyle: {
+    alignItems: 'center',
     flexDirection: 'row',
     flex: 1
   },
   headerTextStyle: {
-    fontSize: 18,
-    flexWrap: 'wrap'
+    marginLeft: 5,
+    fontSize: 20,
+    flexWrap: 'wrap',
+    fontWeight: 'bold'
   }
 }
 
