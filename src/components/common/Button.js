@@ -13,7 +13,6 @@ const Button = ({ onPress, children }) => {
         {children}
       </Text>
     </TouchableOpacity>
-
   )
 }
 
@@ -37,4 +36,5 @@ const styles = {
     paddingBottom: 10
   }
 }
+
 export default Button
