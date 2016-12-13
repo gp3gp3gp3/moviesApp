@@ -1,4 +1,5 @@
 import React from 'react'
+import { View } from 'react-native'
 import { LoginButton, AccessToken } from 'react-native-fbsdk'
 import { connect } from 'react-redux'
 import firebase from 'firebase'
@@ -21,11 +22,15 @@ const onLoginFinished = (err, result) => {
 }
 
 const FacebookButton = () => (
-  <LoginButton
-    publishPermissions={['publish_actions']}
-    onLoginFinished={onLoginFinished}
-    onLogoutFinished={() => firebase.auth().signOut()}
-  />
+  <View style={{flex: 1}}>
+    <View style={{alignSelf: 'center'}}>
+      <LoginButton
+        publishPermissions={['publish_actions']}
+        onLoginFinished={onLoginFinished}
+        onLogoutFinished={() => firebase.auth().signOut()}
+      />
+    </View>
+  </View>
 )
 
 export default connect(null, { loginFacebookUser })(FacebookButton)

@@ -56,7 +56,7 @@ const LoginForm = ({ loading, email, password, loginUpdate, loginUser }) => {
 
 const styles = {
   textStyle: {
-    fontSize: 20,
+    fontSize: 18,
     alignSelf: 'center'
   }
 }
