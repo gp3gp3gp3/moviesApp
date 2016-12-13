@@ -20,7 +20,9 @@ class Movie extends Component {
 
     const {
       title,
-      poster_400x570
+      poster_400x570,
+      overview,
+      rating
     } = movie
 
     const poster = poster_400x570.replace(/^http:/, 'https:')
@@ -28,7 +30,9 @@ class Movie extends Component {
     const {
       titleText,
       posterImageStyle,
-      headerContentStyle
+      headerContentStyle,
+      ratingTextStyle,
+      overviewTextStyle
     } = styles
 
     return (
@@ -44,6 +48,16 @@ class Movie extends Component {
             source={{ uri: poster }}
           />
         </CardSection>
+        <CardSection>
+          <Text style={ratingTextStyle}>
+            Rated: {rating}
+          </Text>
+        </CardSection>
+        <CardSection>
+          <Text style={overviewTextStyle}>
+            {overview}
+          </Text>
+        </CardSection>
       </ScrollView>
     )
   }
@@ -51,6 +65,9 @@ class Movie extends Component {
   render () {
     return (
       <Card>
+        <Text style={styles.errorTextStyle}>
+          {this.props.error}
+        </Text>
         {this.renderMovie()}
       </Card>
     )
@@ -58,6 +75,11 @@ class Movie extends Component {
 }
 
 const styles = {
+  errorTextStyle: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red'
+  },
   headerContentStyle: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -72,12 +94,22 @@ const styles = {
     height: 570,
     flex: 1,
     width: null
+  },
+  ratingTextStyle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginLeft: 10
+  },
+  overviewTextStyle: {
+    fontSize: 18,
+    marginLeft: 10,
+    marginRight: 10
   }
 }
 
 const mapStateToProps = ({ movies }) => {
-  const { movie } = movies
-  return { movie }
+  const { movie, error } = movies
+  return { movie, error }
 }
 
 export default connect(mapStateToProps, { fetchMovie })(Movie)

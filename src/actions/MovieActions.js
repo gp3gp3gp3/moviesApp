@@ -18,7 +18,6 @@ export const fetchMovies = () => dispatch => {
 export const fetchMovie = ({ id }) => dispatch => {
   axios.get(`https://api-public.guidebox.com/v1.43/US/0LiaVZnVvhOeiUZ1FFIYW53K0atxtR/movie/${id}`)
     .then(res => {
-      console.log('in fetchMovie action creator', res)
       dispatch({ type: MOVIE_FETCH_SUCCESS, payload: res.data })
     })
     .catch(err => {
