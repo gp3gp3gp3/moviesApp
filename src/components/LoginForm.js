@@ -3,7 +3,7 @@ import { Text } from 'react-native'
 import { connect } from 'react-redux'
 import { Card, CardSection, Input, Button, Spinner } from './common'
 import { loginUpdate, loginUser } from '../actions'
-// import FacebookButton from './FacebookButton'
+import FacebookButton from './FacebookButton'
 
 const LoginForm = ({ loading, email, password, loginUpdate, loginUser }) => {
   const renderLoginButton = () => {
@@ -47,10 +47,7 @@ const LoginForm = ({ loading, email, password, loginUpdate, loginUser }) => {
       </Text>
 
       <CardSection>
-        {/*
-          Need to add add facebook sdk to ios project
-          <FacebookButton />
-        */}
+        <FacebookButton />
       </CardSection>
 
     </Card>
