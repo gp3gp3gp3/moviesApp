@@ -1,11 +1,13 @@
 import firebase from 'firebase'
 import { Actions } from 'react-native-router-flux'
+import { LoginManager } from 'react-native-fbsdk'
 
 import {
   LOGIN_UPDATE,
   LOGIN_USER,
   LOGIN_USER_FAIL,
-  LOGIN_USER_SUCCESS
+  LOGIN_USER_SUCCESS,
+  LOGOUT_USER
 } from './types'
 
 export const loginUpdate = ({ prop, value }) => (
@@ -48,4 +50,11 @@ export const loginFacebookUser = ({ user }) => {
     type: LOGIN_USER_SUCCESS,
     payload: user
   }
+}
+
+export const logOutUser = () => {
+  LoginManager.logOut()
+  firebase.auth().signOut()
+  Actions.auth({ type: 'BackAction' })
+  return { type: LOGOUT_USER }
 }

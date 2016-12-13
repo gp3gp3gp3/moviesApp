@@ -1,8 +1,11 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { Text } from 'react-native'
+import { connect } from 'react-redux'
+import { Button, Card, CardSection } from './common'
+import { logOutUser } from '../actions'
 
-const MovieList = () => (
-  <View>
+const MovieList = ({logOutUser}) => (
+  <Card>
     <Text>Movie list page</Text>
     <Text>Movie list page</Text>
     <Text>Movie list page</Text>
@@ -10,7 +13,13 @@ const MovieList = () => (
     <Text>Movie list page</Text>
     <Text>Movie list page</Text>
     <Text>Movie list page</Text>
-  </View>
+
+    <CardSection>
+      <Button onPress={logOutUser}>
+        Log Out
+      </Button>
+    </CardSection>
+  </Card>
 )
 
-export default MovieList
+export default connect(null, { logOutUser })(MovieList)
