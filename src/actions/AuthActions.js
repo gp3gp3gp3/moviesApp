@@ -41,3 +41,11 @@ const loginUserSuccess = (dispatch, user) => {
 
   Actions.main()
 }
+
+export const loginFacebookUser = ({ user }) => {
+  Actions.main()
+  return {
+    type: LOGIN_USER_SUCCESS,
+    payload: user
+  }
+}

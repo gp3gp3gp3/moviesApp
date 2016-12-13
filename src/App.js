@@ -5,6 +5,7 @@ import ReduxThunk from 'redux-thunk'
 import firebase from 'firebase'
 import reducers from './reducers'
 import Router from './Router'
+import { loginFacebookUser } from './actions'
 
 class App extends Component {
   componentWillMount () {
@@ -16,6 +17,11 @@ class App extends Component {
       messagingSenderId: '652341839823'
     }
     firebase.initializeApp(config)
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        loginFacebookUser({ user })
+      }
+    })
   }
 
   render () {
