@@ -41,7 +41,6 @@ class MovieList extends Component {
   }
 
   render () {
-    console.log(this.props.movies)
     return (
       <Card>
         {this.renderMovieList()}
