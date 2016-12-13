@@ -3,6 +3,7 @@ import { Text, ListView } from 'react-native'
 import { connect } from 'react-redux'
 import { Button, Card, CardSection, Spinner } from './common'
 import { logOutUser, fetchMovies } from '../actions'
+import MovieItem from './MovieItem'
 
 class MovieList extends Component {
   componentWillMount () {
@@ -23,7 +24,7 @@ class MovieList extends Component {
   }
 
   renderRow (movie) {
-    return <Text>{movie.title}</Text>
+    return <MovieItem {...movie} />
   }
 
   renderMovieList () {
