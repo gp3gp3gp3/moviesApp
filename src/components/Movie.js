@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, Image, ScrollView } from 'react-native'
+import { View, Text, Image, ScrollView, Alert } from 'react-native'
 import { ShareDialog } from 'react-native-fbsdk'
 import { fetchMovie } from '../actions'
 import { Card, CardSection, Spinner, Button } from './common'
@@ -12,10 +12,11 @@ class Movie extends Component {
   }
 
   shareFacebookLink () {
+    const { movie } = this.props
     const shareLinkContent = {
       contentType: 'link',
-      contentUrl: `https://en.wikipedia.org/?curid=${this.props.movie.wikipedia_id}`,
-      contentDescription: `I just watched ${this.props.movie.title}.  Check out the Wiki page for it.`
+      contentUrl: `https://en.wikipedia.org/?curid=${movie.wikipedia_id}`,
+      contentDescription: `I just watched ${movie.title}.  Check out the Wiki page for it.`
     }
 
     ShareDialog.canShow(shareLinkContent)
@@ -32,7 +33,7 @@ class Movie extends Component {
         }
       },
       error => {
-        console.error('Share fail with error: ' + error)
+        Alert.alert('Facebook Error', `Share fail with error: ${error}`)
       }
     )
   }
