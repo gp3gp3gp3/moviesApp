@@ -1,8 +1,9 @@
 import React from 'react'
 import { TouchableWithoutFeedback, View, Text, Image } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 import { CardSection } from './common'
 
-const MovieItem = ({title, poster_120x171, rating}) => {
+const MovieItem = ({id, title, poster_120x171, rating}) => {
   const {
     thumbnailContainerStyle,
     thumbnailStyle,
@@ -11,8 +12,13 @@ const MovieItem = ({title, poster_120x171, rating}) => {
   } = styles
 
   const thumbnail = poster_120x171.replace(/^http:/, 'https:')
+
+  const onRowPress = () => {
+    Actions.movieShow({ id })
+  }
+
   return (
-    <TouchableWithoutFeedback>
+    <TouchableWithoutFeedback onPress={onRowPress}>
       <View>
         <CardSection>
           <View style={thumbnailContainerStyle}>
