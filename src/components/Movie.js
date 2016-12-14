@@ -12,10 +12,11 @@ class Movie extends Component {
   }
 
   shareFacebookLink () {
+    const { movie } = this.props
     const shareLinkContent = {
       contentType: 'link',
-      contentUrl: `https://en.wikipedia.org/?curid=${this.props.movie.wikipedia_id}`,
-      contentDescription: `I just watched ${this.props.movie.title}.  Check out the Wiki page for it.`
+      contentUrl: `https://en.wikipedia.org/?curid=${movie.wikipedia_id}`,
+      contentDescription: `I just watched ${movie.title}.  Check out the Wiki page for it.`
     }
 
     ShareDialog.canShow(shareLinkContent)
