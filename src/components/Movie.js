@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, Image, ScrollView } from 'react-native'
+import { View, Text, Image, ScrollView, Alert } from 'react-native'
 import { ShareDialog } from 'react-native-fbsdk'
 import { fetchMovie } from '../actions'
 import { Card, CardSection, Spinner, Button } from './common'
@@ -33,7 +33,7 @@ class Movie extends Component {
         }
       },
       error => {
-        console.error('Share fail with error: ' + error)
+        Alert.alert('Facebook Error', `Share fail with error: ${error}`)
       }
     )
   }
