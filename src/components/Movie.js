@@ -1,13 +1,40 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, Image, ScrollView } from 'react-native'
+import { ShareDialog } from 'react-native-fbsdk'
 import { fetchMovie } from '../actions'
-import { Card, CardSection, Spinner } from './common'
+import { Card, CardSection, Spinner, Button } from './common'
 
 class Movie extends Component {
   componentWillMount () {
     const { id } = this.props
     this.props.fetchMovie({ id })
+  }
+
+  shareFacebookLink () {
+    const shareLinkContent = {
+      contentType: 'link',
+      contentUrl: `https://en.wikipedia.org/?curid=${this.props.movie.wikipedia_id}`,
+      contentDescription: `I just watched ${this.props.movie.title}.  Check out the Wiki page for it.`
+    }
+
+    ShareDialog.canShow(shareLinkContent)
+      .then(canShow => {
+        if (canShow) {
+          return ShareDialog.show(shareLinkContent)
+        }
+      })
+      .then(result => {
+        if (result.isCancelled) {
+          console.log('Share cancelled')
+        } else {
+          console.log('Share success with postId: ' + result.postId)
+        }
+      },
+      error => {
+        console.error('Share fail with error: ' + error)
+      }
+    )
   }
 
   renderMovie () {
@@ -63,6 +90,11 @@ class Movie extends Component {
           <Text style={overviewTextStyle}>
             {overview}
           </Text>
+        </CardSection>
+        <CardSection>
+          <Button onPress={this.shareFacebookLink.bind(this)}>
+            Share this movie on Facebook
+          </Button>
         </CardSection>
       </ScrollView>
     )
