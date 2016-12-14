@@ -22,7 +22,8 @@ class Movie extends Component {
       title,
       poster_400x570,
       overview,
-      rating
+      rating,
+      release_date
     } = movie
 
     const poster = poster_400x570.replace(/^http:/, 'https:')
@@ -51,6 +52,11 @@ class Movie extends Component {
         <CardSection>
           <Text style={ratingTextStyle}>
             Rated: {rating}
+          </Text>
+        </CardSection>
+        <CardSection>
+          <Text style={ratingTextStyle}>
+            Released: {release_date}
           </Text>
         </CardSection>
         <CardSection>
