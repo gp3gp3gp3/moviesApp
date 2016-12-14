@@ -6,7 +6,7 @@ import {
 } from './types'
 
 export const fetchMovies = () => dispatch => {
-  axios.get(`https://api-public.guidebox.com/v1.43/US/0LiaVZnVvhOeiUZ1FFIYW53K0atxtR/movies/all/50/25/all/all`)
+  axios.get(`https://api-public.guidebox.com/v1.43/US/rK5hSALNTzZ6QWwXESVZF9UcLtItfp3c/movies/all/50/25/all/all`)
     .then(res => {
       dispatch({ type: MOVIES_FETCH_SUCCESS, payload: res.data.results })
     })
@@ -16,7 +16,7 @@ export const fetchMovies = () => dispatch => {
 }
 
 export const fetchMovie = ({ id }) => dispatch => {
-  axios.get(`https://api-public.guidebox.com/v1.43/US/0LiaVZnVvhOeiUZ1FFIYW53K0atxtR/movie/${id}`)
+  axios.get(`https://api-public.guidebox.com/v1.43/US/rK5hSALNTzZ6QWwXESVZF9UcLtItfp3c/movie/${id}`)
     .then(res => {
       dispatch({ type: MOVIE_FETCH_SUCCESS, payload: res.data })
     })
